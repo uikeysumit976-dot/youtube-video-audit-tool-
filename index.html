@@ -17,15 +17,20 @@
 
 </body></html>
 <script>
-  setInterval(() => {
-    document.querySelectorAll('div, a').forEach(el => {
-      if (el.innerHTML.includes('Bolt') || el.href?.includes('bolt.new')) {
-        el.remove();
-      }
-    });
-  }, 100);
+  window.addEventListener('DOMContentLoaded', () => {
+    const removeBoltBadge = () => {
+      document.querySelectorAll('div, a').forEach(el => {
+        if ((el.innerText && el.innerText.includes('Bolt')) || (el.href && el.href.includes('bolt.new'))) {
+          el.remove();
+        }
+      });
+    };
+    removeBoltBadge();
+    setTimeout(removeBoltBadge, 500);
+    setTimeout(removeBoltBadge, 1500);
+  });
 </script>
-<style>
+
   div[class*="bolt"], a[href*="bolt.new"], div:has(> a[href*="bolt.new"]) {
     display: none !important;
     visibility: hidden !important;
